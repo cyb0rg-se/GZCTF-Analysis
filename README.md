@@ -83,10 +83,11 @@ GAME_SERVER_URL = "http://your_gzctf_platform_url/api/game/${比赛ID}/scoreboar
 ```Bash
 python3 app.py
 ```
-应用默认运行在 http://127.0.0.1:5001/。您也可以在 `app.py` 中修改 `app.run()` 的参数来更改端口或监听地址。
+应用默认运行在 http://127.0.0.1:5001/。
+您也可以在 `app.py` 中修改 `app.run()` 的参数来更改端口或监听地址。
 
 ## 使用说明
-1.访问页面: 在浏览器中打开 http://127.0.0.1:5001/。
+1.访问页面: 在浏览器中打开 http://127.0.0.1:5001/
 
 ![image-20250515163548626](./images/image-20250515163548626.png)
 
