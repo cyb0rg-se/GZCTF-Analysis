@@ -38,16 +38,16 @@ GZCTF-Analysis 是一个用于分析 CTF 竞赛中选手之间解题行为相似
 ## 目录结构
 ```
 GZCTF-Analysis/
-├── app.py                          # Flask 后端主应用
-├── data_fetcher.py             # 数据抓取和缓存模块
-├── analysis_engine.py        # 核心分析逻辑和相似度计算模块
-├── requirements.txt           # 项目依赖
-├── scoreboard_data.json    # 缓存的原始计分板数据 (运行时生成)
-├── analysis_results.json      # 缓存的分析结果 (运行时生成)
+├── app.py		# Flask 后端主应用
+├── data_fetcher.py		# 数据抓取和缓存模块
+├── analysis_engine.py		# 核心分析逻辑和相似度计算模块
+├── requirements.txt		# 项目依赖
+├── scoreboard_data.json		# 缓存的原始计分板数据 (运行时生成)
+├── analysis_results.json		# 缓存的分析结果 (运行时生成)
 └── static/
-	├── index.html              # 前端主页面
-	├── script.js                  # 前端 JavaScript 逻辑
-	└── style.css                 # 前端 CSS 样式
+	├── index.html		# 前端主页面
+	├── script.js		# 前端 JavaScript 逻辑
+	└── style.css		# 前端 CSS 样式
 ```
 ## 安装与运行
 
