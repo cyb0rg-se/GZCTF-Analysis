@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选手竞赛相似度分析系统</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+    </head>
+<body>
+    <div class="container">
+        <h1>选手竞赛相似度分析系统</h1>
+
+        <div class="status-bar">
+            <span>原始数据采集: <span id="dataFetchTime">加载中...</span></span>
+            <span style="margin-left: 15px;">预计算分析于: <span id="analysisCalcTime">加载中...</span></span>
+            <button id="refreshDataBtn">刷新服务器数据 (并更新预计算)</button>
+        </div>
+        <div id="defaultParamsUsed" style="font-size: 0.8em; color: #555; margin-bottom: 15px; padding: 5px; background-color: #f0f0f0; border-radius: 4px;">
+            预计算参数: 加载中...
+        </div>
+
+        <hr>
+
+        <h2>参数配置 (用于筛选显示或重新计算)</h2>
+        <div class="form-section">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="targetUsername">目标用户名 (用于个人网络图/筛选列表):</label>
+                    <input type="text" id="targetUsername" placeholder="例如：zhangsan">
+                </div>
+                <div class="form-group">
+                    <label for="minScore">选手最低有效成绩 (用于重新计算时预处理):</label>
+                    <input type="number" id="minScore" value="0" min="0">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="minSimilarity">关系图最小相似度 (用于图表边筛选/重新计算):</label>
+                    <input type="number" id="minSimilarity" value="0.3" step="0.05" min="0" max="1">
+                </div>
+                <div class="form-group">
+                    <label for="timeProximitySeconds">时间接近性阈值(秒) (用于重新计算):</label>
+                    <input type="number" id="timeProximitySeconds" value="300" min="0">
+                </div>
+            </div>
+
+            <div>
+                <h3>选择分析方法 (用于重新计算):</h3>
+                <div class="checkbox-container">
+                    <span class="checkbox-item">
+                        <input type="checkbox" id="methodJaccard" value="jaccard" checked>
+                        <label for="methodJaccard">Jaccard 索引</label>
+                    </span>
+                    <span class="checkbox-item">
+                        <input type="checkbox" id="methodWeightedJaccard" value="weighted_jaccard" checked>
+                        <label for="methodWeightedJaccard">加权 Jaccard</label>
+                    </span>
+                    <span class="checkbox-item">
+                        <input type="checkbox" id="methodSequence" value="sequence" checked>
+                        <label for="methodSequence">解题顺序相似度</label>
+                    </span>
+                    <span class="checkbox-item">
+                        <input type="checkbox" id="methodTimeProximity" value="time_proximity" checked>
+                        <label for="methodTimeProximity">提交时间接近性</label>
+                    </span>
+                    <span class="checkbox-item">
+                        <input type="checkbox" id="methodTimeDiffDist" value="time_diff_dist" checked>
+                        <label for="methodTimeDiffDist">时间差分布 (Z-score)</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button id="viewCachedAnalysisBtn" title="加载并显示服务器上预先计算好的分析结果">查看/筛选预计算结果</button>
+                <button id="recalculateAnalysisBtn" title="使用上方选定的参数，对当前服务器上的原始数据进行一次新的分析计算">使用当前参数重新计算</button>
+                <button id="drawGlobalNetworkBtn" title="基于当前表格中显示的数据绘制全体关系网络图">绘制全体关系网络图</button>
+                <button id="drawPersonalNetworkBtn" title="基于当前表格中显示的数据和目标用户名绘制个人网络图">绘制个人关系网络图</button>
+            </div>
+        </div>
+
+        <hr>
+
+        <section id="analysisOutput">
+            <h2>分析结果</h2>
+            <div id="resultsArea">
+                <p>请点击“查看/筛选预计算结果”加载数据，或点击“重新计算分析”。</p>
+            </div>
+
+            <h3>关系网络图:</h3>
+            <div id="cy"></div>
+        </section>
+
+        <footer>
+            <p>😊😊 By <a href="https://github.com/cyb0rg-se" target="_blank">Cyb0rg</a> 😊😊</p>
+        </footer>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

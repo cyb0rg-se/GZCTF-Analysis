@@ -1,0 +1,484 @@
+/* static/style.css - 改进版，侧重横向布局，并已包含详情模态框样式 */
+
+/* 全局样式与字体 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Microsoft YaHei"; /* 更现代的字体栈，并包含微软雅黑 */
+    background-color: #f0f2f5; /* 更柔和的浅灰色背景 */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: flex; /* 使用 Flexbox 布局 */
+    flex-direction: column; /* 主轴为垂直方向 */
+    align-items: center; /* 交叉轴上居中 */
+    min-height: 100vh; /* 确保内容至少撑满视口高度 */
+}
+/* 作者署名 footer 样式 */
+.container footer {
+    margin-top: 50px; /* 在分析结果和 footer 之间留出较大的空间 */
+    padding-top: 25px; /* footer 内部上方填充 */
+    border-top: 1px solid #e5e7eb; /* 在 footer 上方添加一条细分隔线 */
+    text-align: center; /* 文字居中 */
+    font-size: 0.85em; /* 使用较小的字体 */
+    color: #777; /* 使用比内容文本更浅的颜色 */
+}
+
+.container footer a {
+    color: #777; /* 链接颜色与父元素一致 */
+    text-decoration: none; /* 移除下划线 */
+    font-weight: 500; /* 稍微加粗 */
+    transition: color 0.2s ease; /* 颜色过渡效果 */
+}
+
+.container footer a:hover {
+    color: #333; /* 鼠标悬停时颜色变深 */
+    text-decoration: underline; /* 鼠标悬停时显示下划线 */
+}
+.container {
+    width: 90%;
+    max-width: 1300px; /* 内容最大宽度，为横向布局留足空间 */
+    margin: 20px auto; /* 上下边距，左右自动 */
+    padding: 25px 30px; /* 增加左右内边距 */
+    background-color: #ffffff; /* 内容区域白色背景 */
+    border-radius: 10px; /* 圆角 */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07); /* 更柔和且明显的阴影 */
+}
+
+/* 标题样式 */
+h1, h2, h3, h4 {
+    color: #1f2937; /* 深灰色标题 */
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    font-weight: 600; /* 标题字重 */
+}
+
+h1 {
+    font-size: 2.4em; /* 主标题加大 */
+    color: #1d4ed8; /* 品牌蓝色 */
+    text-align: center;
+    border-bottom: 2px solid #e5e7eb; /* 标题下边框 */
+    padding-bottom: 0.6em;
+    margin-bottom: 1.2em; /* 增加与下方内容间距 */
+}
+
+h2 {
+    font-size: 1.7em; /* 二级标题加大 */
+    color: #374151;
+    border-left: 5px solid #3b82f6; /* 左侧强调线加粗 */
+    padding-left: 0.7em; /* 强调线与文字间距 */
+    margin-top: 2em; /* 增加与上方内容间距 */
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-size: 1.35em; /* 三级标题调整 */
+    color: #4b5563;
+    margin-bottom: 1em; 
+}
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #d1d5db; /* 分隔线颜色 */
+    margin: 3em 0; /* 分隔线上下间距加大 */
+}
+
+/* 表单元素美化 - 重点调整横向布局 */
+.form-section {
+    margin-bottom: 30px; /* 表单区块与下方内容间距 */
+    padding: 25px;
+    background-color: #f9fafb; /* 表单区域浅背景色 */
+    border-radius: 8px; /* 表单区块圆角 */
+    border: 1px solid #e5e7eb;
+}
+
+/* 用于横向排列表单元素的行 */
+.form-row {
+    display: flex;
+    flex-wrap: wrap; /* 允许换行，以适应不同屏幕宽度 */
+    gap: 25px; /* 行内元素之间的间隙 */
+    margin-bottom: 20px; /* 行之间的间距 */
+}
+
+/* 表单行内的单个表单组 */
+.form-group {
+    flex: 1; /* 让每个组平分空间 */
+    min-width: 280px; /* 每个组的最小宽度，确保内容不会被过度压缩 */
+    display: flex; 
+    flex-direction: column; 
+}
+
+.form-group label { 
+    margin-bottom: 8px; /* 标签和输入框间距 */
+    font-size: 0.95em; 
+    color: #374151;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%; 
+    padding: 12px 15px; 
+    border: 1px solid #d1d5db; 
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em; 
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #3b82f6; 
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); 
+    outline: none; 
+}
+
+/* 复选框组横向排列 */
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 12px 25px; /* 行间隙和列间隙 */
+    margin-top: 12px;
+    padding: 10px;
+    background-color: #fff; /* 给复选框区域一个背景 */
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+.checkbox-item {
+    display: flex; 
+    align-items: center; 
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.15); /* 稍微放大复选框 */
+    cursor: pointer;
+}
+
+.checkbox-item label { 
+    margin-bottom: 0; 
+    font-weight: normal;
+    font-size: 0.95em;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+
+/* 按钮样式 */
+.button-container {
+    margin-top: 30px; 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    align-items: center; /* 如果按钮高度不一致，使其底部对齐或居中对齐 */
+}
+
+button {
+    background-color: #3b82f6; 
+    color: white;
+    padding: 12px 22px; 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em; 
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+button:hover {
+    background-color: #2563eb; 
+    transform: translateY(-2px); /* 悬停上移效果更明显 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+button:active {
+    background-color: #1d4ed8; 
+    transform: translateY(0px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+button#refreshDataBtn { 
+    background-color: #10b981; 
+    margin-left: auto; /* 让刷新按钮靠右（如果它在 status-bar 内且 status-bar 是 flex） */
+}
+button#refreshDataBtn:hover {
+    background-color: #059669;
+}
+
+/* 状态与结果区域 */
+.status-bar {
+    display: flex; /* 让内部元素可以对齐 */
+    justify-content: space-between; /* 内容两端对齐 */
+    align-items: center; /* 垂直居中 */
+    padding: 12px 20px;
+    background-color: #eef2ff; 
+    border: 1px solid #c7d2fe;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 0.95em;
+}
+#dataFetchTime {
+    font-weight: 600;
+    color: #3b82f6; 
+}
+#analysisOutput { /* 包裹结果和图表的容器 */
+    margin-top: 30px;
+}
+#resultsArea {
+    background-color: #ffffff;
+    padding: 25px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-top: 0; /* 因为被 #analysisOutput 包裹 */
+    min-height: 150px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    overflow-x: auto; /* 确保表格内容可以滚动 */
+}
+#resultsArea p:first-child { margin-top: 0; }
+#resultsArea p { color: #4b5563; }
+#resultsArea h4 {
+    color: #1e40af;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.15em; /* 结果区小标题调整 */
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+}
+
+/* 表格样式美化 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9em;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    border-radius: 8px; 
+    overflow: hidden; 
+}
+table th, table td {
+    border: 1px solid #e5e7eb; 
+    padding: 12px 15px; 
+    text-align: left;
+    vertical-align: middle; 
+}
+table th {
+    background-color: #f3f4f6; 
+    font-weight: 600;
+    color: #374151;
+    text-transform: uppercase; 
+    letter-spacing: 0.05em; 
+    position: sticky; 
+    top: 0;
+    z-index: 10;
+}
+table tbody tr { transition: background-color 0.15s ease-in-out; }
+table tbody tr:nth-child(even) { background-color: #f9fafb; }
+table tbody tr:hover { background-color: #eff6ff; }
+
+/* Cytoscape 图容器样式 */
+#cy {
+    width: 100%;
+    height: 650px; 
+    border: 1px solid #d1d5db; 
+    background-color: #fdfdfe; 
+    border-radius: 8px;
+    margin-top: 25px;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.06); 
+}
+
+/* 响应式调整 - 针对横向布局 */
+@media (max-width: 992px) { /* 中等屏幕调整 */
+    .form-row {
+        gap: 15px; 
+    }
+    .form-group {
+        min-width: calc(50% - 15px); 
+    }
+    .container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 768px) { /* 小屏幕调整 */
+    .container {
+        padding: 20px 15px;
+    }
+    .form-row {
+        flex-direction: column; 
+        gap: 0; 
+    }
+    .form-group {
+        min-width: 100%; 
+        margin-bottom: 18px; 
+    }
+
+    .checkbox-container {
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 10px;
+        padding: 10px 0; 
+        border: none;
+        background-color: transparent;
+    }
+    .checkbox-item {
+        margin-bottom: 8px; 
+    }
+    .status-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    button#refreshDataBtn {
+        margin-left: 0; 
+        width: 100%; 
+    }
+
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    input[type="text"], input[type="number"], button {
+        font-size: 1em; 
+        padding: 12px 15px;
+    }
+    .button-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    button {
+        width: 100%;
+        margin-right: 0;
+    }
+    #cy { height: 500px; } 
+    table { font-size: 0.85em; }
+    table th, table td { padding: 10px 12px; }
+}
+
+@media (max-width: 480px) { /* 更小屏幕的微调 */
+    .container {
+        padding: 15px 10px;
+        width: 100%;
+        margin: 10px 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    h1 { font-size: 1.7em; }
+    h2 { font-size: 1.3em; padding-left: 0.5em;}
+    #cy { height: 400px; }
+}
+
+/* ++++++++++++++++ 新增/确保包含的模态框样式 ++++++++++++++++ */
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed; /* 固定定位，使其脱离文档流，覆盖在页面之上 */
+    z-index: 1050; /* 一个较高的 z-index 确保在最上层 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* 防止模态框本身滚动，让内容区滚动 */
+    outline: 0;
+    background-color: rgba(0,0,0,0.5); /* 半透明黑色背景遮罩 */
+    /* padding-top: 60px; -- 通过 margin: auto 实现垂直居中，这个可以去掉或调整 */
+    box-sizing: border-box;
+}
+
+.modal-content {
+    position: relative; 
+    background-color: #fefefe; 
+    margin: 10vh auto; /* 上下10%视口高度边距，左右自动居中 */
+    padding: 0; 
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 8px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    width: 85%; /* 模态框宽度 */
+    max-width: 800px; /* 最大宽度，可以根据内容调整 */
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh; /* 限制模态框最大高度为视口的80% */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid #e9ecef; 
+    background-color: #f8f9fa; 
+    border-top-left-radius: 8px; /* 配合父元素圆角 */
+    border-top-right-radius: 8px;
+}
+
+#detailsModalTitle { /* 这是模态框标题的 ID */
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1.5em; /* 模态框标题字号 */
+    color: #343a40; 
+}
+
+.modal-close-btn {
+    color: #6c757d; 
+    font-size: 2rem; 
+    font-weight: bold;
+    line-height: 1;
+    opacity: 0.7;
+    text-shadow: 0 1px 0 #fff;
+    background: transparent; /* 确保背景透明 */
+    border: 0; /* 移除默认按钮边框 */
+    padding: 0; /* 移除默认按钮内边距 */
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+#detailsModalBody { /* 这是模态框内容的 ID */
+    padding: 20px 25px;
+    overflow-y: auto; /* 当内容超出时，只让内容区滚动 */
+    flex-grow: 1; 
+    line-height: 1.7; /* 增加模态框内容行高，便于阅读 */
+}
+
+#detailsModalBody ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#detailsModalBody li {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 12px 15px;
+    margin-bottom: 12px; /* 增加列表项间距 */
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+#detailsModalBody li strong {
+    color: #007bff; 
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+.timeline-details .timeline-entry {
+    margin-left: 10px;
+    font-size: 0.95em; /* 时间线内文字大小 */
+    color: #495057; 
+    line-height: 1.6;
+}
+.timeline-details .user-solve {
+    font-weight: 500; 
+    color: #212529;
+    min-width: 120px; 
+    display: inline-block;
+    margin-right: 5px;
+}
+.timeline-details .timeline-diff {
+    margin-top: 8px; /* 与上方条目间距 */
+    font-size: 0.9em;
+    color: #6c757d;
+    padding-left: 15px;
+    border-left: 3px solid #dee2e6; 
+}
+/* ++++++++++++++++ 模态框样式结束 ++++++++++++++++ */
