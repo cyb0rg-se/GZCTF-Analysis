@@ -4,7 +4,7 @@
 ![Flask](https://img.shields.io/badge/web-flask-green.svg)
 ![Frontend](https://img.shields.io/badge/frontend-html%2FCSS%2FJS-orange.svg)
 ![Visualization](https://img.shields.io/badge/visualization-Cytoscape.js-purple.svg)
-![License](https://img.shields.io/github/license/your-username/GZCTF-Analysis.svg)
+![License](https://img.shields.io/github/license/cyb0rg-se/GZCTF-Analysis.svg)
 
 ## 项目简介
 
